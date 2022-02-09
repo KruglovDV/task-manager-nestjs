@@ -9,7 +9,7 @@ module.exports = {
   migrationsTableName: 'migration',
   migrations: ['dist/migration/*.js'],
   cli: {
-    migrationsDir: 'dist/migration',
+    migrationsDir: 'src/migration',
   },
   ssl: false,
   synchronize: false,

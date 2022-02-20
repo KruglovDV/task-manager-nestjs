@@ -17,9 +17,9 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async createUser(@Body() userDto: CreateUserDto) {
+  async createUser(@Body() createUserDto: CreateUserDto) {
     try {
-      return await this.usersService.create(userDto);
+      return await this.usersService.create(createUserDto);
     } catch (error) {
       if (error.code === '23505') {
         throw new BadRequestException(error.message);

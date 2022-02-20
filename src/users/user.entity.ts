@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Task } from '../tasks/task.entity';
 
 @Entity()
 export class User {
@@ -16,4 +17,10 @@ export class User {
 
   @Column({ default: true })
   isActive: boolean;
+
+  @OneToMany(() => Task, (task) => task.creator)
+  createdTasks: Task[];
+
+  @OneToMany(() => Task, (task) => task.executor)
+  tasksAtWork: Task[];
 }

@@ -16,8 +16,11 @@ export class TasksService {
     private readonly tasksRepository: Repository<Task>,
   ) {}
 
-  async getAllTasks() {
-    return this.tasksRepository.find({});
+  async getAllTasks(filters: Record<string, unknown>) {
+    return this.tasksRepository.find({
+      where: filters,
+      relations: ['creator', 'executor'],
+    });
   }
 
   async createTask(createTaskDto: CreateTaskDto, creatorId: number) {

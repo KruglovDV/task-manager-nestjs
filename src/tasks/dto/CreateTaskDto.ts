@@ -16,4 +16,8 @@ export class CreateTaskDto {
   @IsOptional()
   @IsString()
   state?: string;
+
+  @IsOptional()
+  @IsInt({ each: true })
+  categories?: number[];
 }

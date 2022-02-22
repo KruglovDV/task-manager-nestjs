@@ -5,8 +5,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { User } from '../users/user.entity';
+import { Category } from '../categories/category.entity';
 
 @Entity()
 export class Task {
@@ -40,4 +43,8 @@ export class Task {
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
   public updated_at: Date;
+
+  @ManyToMany(() => Category, (category) => category.tasks)
+  @JoinTable()
+  categories: Category[];
 }

@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  app:
+    container_name: task_manager
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    command: make dev
+    volumes:
+      - .:/app
+
+  db:
+    container_name: task_manager_db
+    image: postgres:11.12
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_USER: "${DB_USERNAME}"
+      POSTGRES_DB: "${DB_NAME}"
